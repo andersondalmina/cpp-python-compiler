@@ -6,13 +6,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - uses: actions/checkout@v1
     - name: configure
       run: ./configure
     - name: make
-      run: make
+      run: make build
     - name: make check
       run: make check
     - name: make distcheck
