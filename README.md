@@ -5,3 +5,9 @@ Python Compiler written in C++.
 - Run command on terminal to compile: `make build`
 - Create a file called `file.py` in the same directory of the binary compiled.
 - Run the binary compiled.
+
+# Roadmap
+- [X] Parser
+- [X] Lexical analysis
+- [ ] Sintaxis analysis
+- [ ] Compiler
