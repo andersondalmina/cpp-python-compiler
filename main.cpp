@@ -59,7 +59,6 @@ void backChar() {
 }
 
 void getToken() {
-    int posl = 0;
     string lex;
 
     switch (currentState) {
@@ -172,7 +171,7 @@ void getToken() {
             }
 
             if (lastChar != ' ' && lastChar != '\n') {
-                printf("Erro léxico(Line:%d, Column:%d): unknown \"%c\" caracter!\n", line, column, lastChar);
+                printf("Lexical Error (Line:%d, Column:%d): unknown \"%c\" caracter!\n", line, column, lastChar);
             }
 
             currentState = initialState;
@@ -201,7 +200,7 @@ void scanIndentation() {
 
     if (n > 0 && (indentStack.empty() || n >= indentStack.top())) {
         indentStack.push(n);
-        tokenList.push_back(Token(TK_INDENT, "INDENTE", line, column));
+        tokenList.push_back(Token(TK_INDENT, "INDENT", line, column));
     } else if (!indentStack.empty()) {
         indentStack.pop();
         tokenList.push_back(Token(TK_DEDENT, "DEDENT", line, column));
