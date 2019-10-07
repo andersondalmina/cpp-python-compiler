@@ -1,3 +1,4 @@
 main
 .vscode
 *.py
+.DS_Store
