@@ -103,6 +103,10 @@ void getToken() {
                 getNextChar();
             }
 
+            if (lastChar != ' ' && lastChar != '\n') {
+                backChar();
+            }
+
             tokenList.push_back(Token(TK_NUMBER, lex, line, column));
             currentState = initialState;
 
@@ -112,6 +116,10 @@ void getToken() {
             while ((lastChar >= 'a' && lastChar <= 'z') || (lastChar >= 'A' && lastChar <= 'Z') || lastChar == '_' || (lastChar >= '0' && lastChar <= '9')) {
                 lex.push_back(lastChar);
                 getNextChar();
+            }
+
+            if (lastChar != ' ' && lastChar != '\n') {
+                backChar();
             }
 
             tokenType = scanKeyword(lex);
@@ -154,6 +162,9 @@ void getToken() {
                 lex.push_back(lastChar);
             }
 
+            if (lastChar != ' ' && lastChar != '\n') {
+                backChar();
+            }
             lex.pop_back();
 
             tokenType = scanOperator(lex);
@@ -191,7 +202,7 @@ void dumpTokenList() {
 void scanIndentation() {
     int n = 0;
     getNextChar();
-    while (lastChar == ' ') {
+    while (lastChar == ' ' || lastChar == '\t') {
         getNextChar();
         n++;
     }

@@ -32,7 +32,7 @@ int line = 0;
 int column = 0;
 
 // currentState is the current state of the analysis
-enum states { initialState, indentationState, stringState, numberState, keywordState, operatorDelimiterState, commentState } currentState;
+enum states { initialState, stringState, numberState, keywordState, operatorDelimiterState, commentState } currentState;
 
 // tokenType is the type of the current token
 int tokenType;
