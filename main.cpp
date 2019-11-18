@@ -98,7 +98,7 @@ void getToken() {
             break;
 
         case numberState:
-            while (lastChar >= '0' && lastChar <= '9') {
+            while ((lastChar >= '0' && lastChar <= '9') || lastChar == '.') {
                 lex.push_back(lastChar);
                 getNextChar();
             }
