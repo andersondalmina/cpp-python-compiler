@@ -54,8 +54,8 @@ void getNextChar() {
     lastChar = '\n';
 }
 
-void backChar() {
-    column--;
+void backChar(int n = 1) {
+    column -= n;
 }
 
 void getToken() {
@@ -63,11 +63,26 @@ void getToken() {
 
     switch (currentState) {
         case initialState:
-            if ((lastChar >= '0' && lastChar <= '9') || lastChar == '.') {
+            if (lastChar >= '0' && lastChar <= '9') {
                 currentState = numberState;
                 getToken();
                 return;
                 break;
+            }
+
+            if (lastChar == '.') {
+                getNextChar();
+                backChar(2);
+
+                if (lastChar >= '0' && lastChar <= '9') {
+                    getNextChar();
+                    currentState = numberState;
+                    getToken();
+                    return;
+                    break;
+                }
+
+                getNextChar();
             }
 
             if ((lastChar >= 'a' && lastChar <= 'z') || (lastChar >= 'A' && lastChar <= 'Z') || lastChar == '_') {
