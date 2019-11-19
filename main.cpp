@@ -63,7 +63,7 @@ void getToken() {
 
     switch (currentState) {
         case initialState:
-            if (lastChar >= '0' && lastChar <= '9') {
+            if ((lastChar >= '0' && lastChar <= '9') || lastChar == '.') {
                 currentState = numberState;
                 getToken();
                 return;
@@ -94,13 +94,22 @@ void getToken() {
             currentState = operatorDelimiterState;
             getToken();
             return;
-
             break;
 
         case numberState:
-            while ((lastChar >= '0' && lastChar <= '9') || lastChar == '.') {
+            while (lastChar >= '0' && lastChar <= '9') {
                 lex.push_back(lastChar);
                 getNextChar();
+            }
+
+            if (lastChar == '.') {
+                lex.push_back(lastChar);
+                getNextChar();
+
+                while (lastChar >= '0' && lastChar <= '9') {
+                    lex.push_back(lastChar);
+                    getNextChar();
+                }
             }
 
             if (lastChar != ' ' && lastChar != '\n') {
