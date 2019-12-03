@@ -7,6 +7,7 @@
 
 #include "./token.cpp"
 #include "./token_list.cpp"
+#include "./sintatic.cpp"
 
 using namespace std;
 
@@ -15,6 +16,7 @@ void getNextChar();
 void getToken();
 void dumpTokenList();
 void scanIndentation();
+void executeSintatico();
 int scanIdentifier(string);
 int scanKeyword(string);
 int scanLiteral(string);
@@ -39,6 +41,9 @@ int tokenType;
 
 // TokenList is a list with all tokens recognized
 vector<Token> tokenList;
+
+// tokenListSintatico is a list aux to check sintatic
+vector<Token> tokenListSintatico;
 
 // indentStack is the stack to control indentation
 stack<int> indentStack;

@@ -42,7 +42,9 @@
 
 // Tokens for operators
 #define TK_SUM 38
+#define TK_SUM_SUM 381
 #define TK_SUB 39
+#define TK_SUB_SUB 391
 #define TK_MUL 40
 #define TK_MUL_MUL 41
 #define TK_DIV 42
@@ -128,7 +130,9 @@ struct TokenList listKeywords[] = {
 
 struct TokenList listOperators[] = {
     { "+", TK_SUM },
+    { "++", TK_SUM_SUM },
     { "-", TK_SUB },
+    { "--", TK_SUB_SUB },
     { "*", TK_MUL },
     { "**", TK_MUL_MUL },
     { "/", TK_DIV },

@@ -6,8 +6,11 @@ Python Compiler written in C++.
 - Create a file called `file.py` in the same directory of the binary compiled.
 - Run the binary compiled.
 
+## Analise Sintática
+- Para rodar a analisador sintático é necessário alterar a flag `enableSintatico` presente no arquivo `main.cpp` para `true`.
+
 # Roadmap
 - [X] Parser
 - [X] Lexical analysis
-- [ ] Sintaxis analysis
+- [+-] Sintaxis analysis
 - [ ] Compiler

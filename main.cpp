@@ -1,5 +1,9 @@
 #include "./header.cpp"
 
+// variável de controle para rodar o analisar Sintático.
+// setar como true para usar.
+bool enableSintatico = false;
+
 int main() {
     currentState = initialState;
     tokenType = 0;
@@ -17,6 +21,10 @@ int main() {
     file.close();
 
     dumpTokenList();
+
+    if (enableSintatico) {
+        executeSintatico();
+    }
 
     return 0;
 }
@@ -270,4 +278,39 @@ int scanDelimiter(string lex) {
     }
 
     return -1;
+}
+
+void getTokenSintatico() {
+    Token nextT = tokenListSintatico.front();
+    tokenListSintatico.erase(tokenListSintatico.begin());
+    tkSintatico = nextT.getType();
+}
+
+int checkSintatico(int tokenType) {
+    switch (tokenType) {
+        case TK_DEF:
+            return S();
+            break;
+
+        case TK_IDENTIFIER:
+            return Attr();
+            break;
+
+        default:
+            return 1;
+            break;
+    }
+}
+
+void executeSintatico() {
+    tokenListSintatico = tokenList;
+    while (tokenListSintatico.empty() == false) {
+        getTokenSintatico();
+        if (checkSintatico(tkSintatico) == 0) {
+            printf("\nSintático Inválido!\n");
+            exit(0);
+        }
+    }
+
+    printf("\nSintático Válido!\n");
 }

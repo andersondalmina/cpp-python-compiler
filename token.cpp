@@ -11,6 +11,8 @@ class Token {
     public:
         Token(int, string, int, int);
         void dump();
+        int getType();
+        string getValue();
 };
 
 Token::Token(int type, string value, int line, int column) {
@@ -22,4 +24,12 @@ Token::Token(int type, string value, int line, int column) {
 
 void Token::dump() {
     printf("Token (Type: %d, Char: '%s', Line: %d, Column: %d)\n", this->type, this->value.c_str(), this->line, this->column);
+}
+
+int Token::getType() {
+    return this->type;
+}
+
+string Token::getValue() {
+    return this->value;
 }
